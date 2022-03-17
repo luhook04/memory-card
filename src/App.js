@@ -7,6 +7,14 @@ const App = () => {
   const [ currentScore, setCurrentScore ] = useState(0);
   const [ bestScore, setBestScore ] = useState(0);
   const maxPokemon = 12;
+
+  const fetchPokemon = () => {};
+
+  const playRound = () => {};
+
+  const handleClick = () => {};
+
+  const shuffleArray = () => {};
 };
 
 export default App;
