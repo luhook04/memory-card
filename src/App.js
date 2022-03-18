@@ -8,7 +8,20 @@ const App = () => {
   const [ bestScore, setBestScore ] = useState(0);
   const maxPokemon = 12;
 
-  const fetchPokemon = () => {};
+  const fetchPokemon = async (amount) => {
+    const pokemonArray = [];
+
+    for (let i = 11; i <= amount + 11; i++) {
+      const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+      const response = await fetch(pokeUrl);
+      const pokemon = await response.json();
+      const id = pokemon.id;
+      const name = pokemon.name;
+      const image = pokemon.sprites.front_default;
+      pokemonArray.push({ id, name, image });
+    }
+    return pokemonArray;
+  };
 
   const playRound = () => {};
 
