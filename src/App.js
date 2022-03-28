@@ -36,7 +36,7 @@ const App = () => {
     }
   };
 
-  const handleClick = () => {};
+  const handleClick = (e) => {};
 
   const shuffleArray = (array) => {
     let currentIndex = array.length,
@@ -54,6 +54,13 @@ const App = () => {
 
     return array;
   };
+
+  return (
+    <div>
+      <Scoreboard />
+      <Grid />
+    </div>
+  );
 };
 
 export default App;
