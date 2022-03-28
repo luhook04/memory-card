@@ -1,6 +1,6 @@
 import React from "react";
 
-const Scoreboard = () => {
+const Scoreboard = ({ currentScore, bestScore }) => {
   return (
     <div className="scoreboard">
       <p>Current Score: {currentScore}</p>
