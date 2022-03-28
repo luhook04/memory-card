@@ -6,6 +6,7 @@ const App = () => {
   const [ clickedPokemon, setClickedPokemon ] = useState([]);
   const [ currentScore, setCurrentScore ] = useState(0);
   const [ bestScore, setBestScore ] = useState(0);
+
   const maxPokemon = 12;
 
   const fetchPokemon = async (amount) => {
@@ -23,7 +24,17 @@ const App = () => {
     return pokemonArray;
   };
 
-  const playRound = () => {};
+  const playRound = (pokemonName) => {
+    if (clickedPokemon.includes(pokemonName)) {
+      setClickedPokemon([]);
+      setCurrentScore(0);
+    }
+    else {
+      setCurrentScore(currentScore + 1);
+      if (currentScore > bestScore) setBestScore(currentScore);
+      setClickedPokemon((prevState) => [ ...prevState, pokemonName ]);
+    }
+  };
 
   const handleClick = () => {};
 
@@ -31,7 +42,7 @@ const App = () => {
     let currentIndex = array.length,
       randomIndex;
 
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
