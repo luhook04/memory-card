@@ -11,6 +11,14 @@ const App = () => {
 
   const maxPokemon = 12;
 
+  useEffect(() => {
+    const loadPokemon = async () => {
+      setPokemon(shuffleArray(await fetchPokemon(maxPokemon)));
+    };
+
+    loadPokemon();
+  }, []);
+
   const fetchPokemon = async (amount) => {
     const pokemonArray = [];
 
