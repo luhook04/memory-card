@@ -21,9 +21,18 @@ const App = () => {
 
   const fetchPokemon = async (amount) => {
     const pokemonArray = [];
+    const randNumArray = [];
 
-    for (let i = 11; i <= amount + 11; i++) {
-      const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    for (let i = 1; i < 200; i++) {
+      randNumArray.push(i);
+    }
+
+    shuffleArray(randNumArray);
+
+    for (let i = 1; i <= amount; i++) {
+      const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${randNumArray[
+        i
+      ]}`;
       const response = await fetch(pokeUrl);
       const pokemon = await response.json();
       const id = pokemon.id;
@@ -46,6 +55,8 @@ const App = () => {
       setClickedPokemon((prevState) => [ ...prevState, pokemonName ]);
     }
   };
+
+  const getNewPokemon = () => {};
 
   const shuffleArray = (array) => {
     let currentIndex = array.length,
