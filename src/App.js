@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Grid from "./components/CardGrid/Grid";
+import Scoreboard from "./components/Scoreboard";
 import "./App.css";
 
 const App = () => {
@@ -36,8 +38,6 @@ const App = () => {
     }
   };
 
-  const handleClick = (e) => {};
-
   const shuffleArray = (array) => {
     let currentIndex = array.length,
       randomIndex;
@@ -55,10 +55,16 @@ const App = () => {
     return array;
   };
 
+  const handleClick = (e) => {
+    const pokemonName = e.target.parentNode.lastChild.textContent;
+    playRound(pokemonName);
+    setPokemon(shuffleArray(pokemon));
+  };
+
   return (
     <div>
-      <Scoreboard />
-      <Grid />
+      <Scoreboard currentScore={currentScore} bestScore={bestScore} />
+      <Grid pokemon={pokemon} handleClick={handleClick} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "Card.js";
+import Card from "./Card";
 
 const Grid = ({ pokemon, handleClick }) => {
   const pokemonCards = pokemon.map((poke) => (
@@ -8,3 +8,5 @@ const Grid = ({ pokemon, handleClick }) => {
 
   return <div>{pokemonCards}</div>;
 };
+
+export default Grid;
