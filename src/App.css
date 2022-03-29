@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .card-wrapper {
   display: flex;
   flex-direction: column;
@@ -5,12 +7,13 @@
   align-items: center;
   border-radius: 15px;
   background-color: aqua;
+  transition: transform(0.3s);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
+  gap: 7px;
 }
 
 .main-wrapper {
@@ -18,9 +21,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-wrapper:hover {
+  transform: scale(1.05);
 }
 
 h3 {
+  font-family: 'Press Start 2P';
+  font-size: small;
   text-align: center;
 }
 
@@ -36,4 +46,9 @@ img {
 .name-wrapper {
   display: block;
   width: 100%;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Press Start 2P';
 }
