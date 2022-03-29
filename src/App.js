@@ -40,8 +40,9 @@ const App = () => {
       setCurrentScore(0);
     }
     else {
-      setCurrentScore(currentScore + 1);
-      if (currentScore > bestScore) setBestScore(currentScore);
+      const newScore = currentScore + 1;
+      if (newScore > bestScore) setBestScore(newScore);
+      setCurrentScore(newScore);
       setClickedPokemon((prevState) => [ ...prevState, pokemonName ]);
     }
   };
