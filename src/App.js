@@ -8,40 +8,45 @@ const App = () => {
   const [ clickedPokemon, setClickedPokemon ] = useState([]);
   const [ currentScore, setCurrentScore ] = useState(0);
   const [ bestScore, setBestScore ] = useState(0);
+  const [ newGame, setNewGame ] = useState(false);
 
   const maxPokemon = 12;
 
-  useEffect(() => {
-    const fetchPokemon = async (amount) => {
-      const pokemonArray = [];
-      const randNumArray = [];
+  useEffect(
+    () => {
+      const fetchPokemon = async (amount) => {
+        const pokemonArray = [];
+        const randNumArray = [];
 
-      for (let i = 1; i < 500; i++) {
-        randNumArray.push(i);
-      }
+        for (let i = 1; i < 500; i++) {
+          randNumArray.push(i);
+        }
 
-      shuffleArray(randNumArray);
+        shuffleArray(randNumArray);
 
-      for (let i = 1; i <= amount; i++) {
-        const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${randNumArray[
-          i
-        ]}`;
-        const response = await fetch(pokeUrl);
-        const pokemon = await response.json();
-        const id = pokemon.id;
-        const name = pokemon.name.toUpperCase();
-        const image = pokemon.sprites.front_default;
-        pokemonArray.push({ id, name, image });
-      }
-      return pokemonArray;
-    };
+        for (let i = 1; i <= amount; i++) {
+          const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${randNumArray[
+            i
+          ]}`;
+          const response = await fetch(pokeUrl);
+          const pokemon = await response.json();
+          const id = pokemon.id;
+          const name = pokemon.name.toUpperCase();
+          const image = pokemon.sprites.front_default;
+          pokemonArray.push({ id, name, image });
+        }
+        return pokemonArray;
+      };
 
-    const loadPokemon = async () => {
-      setPokemon(shuffleArray(await fetchPokemon(maxPokemon)));
-    };
+      const loadPokemon = async () => {
+        setPokemon(shuffleArray(await fetchPokemon(maxPokemon)));
+        setCurrentScore(0);
+      };
 
-    loadPokemon();
-  }, []);
+      loadPokemon();
+    },
+    [ newGame ]
+  );
 
   const playRound = (pokemonName) => {
     if (clickedPokemon.includes(pokemonName)) {
@@ -82,13 +87,17 @@ const App = () => {
     console.log(pokemonName);
   };
 
+  const playAgain = () => {
+    setNewGame(!newGame);
+  };
+
   return (
     <div className="main-wrapper">
       <Scoreboard currentScore={currentScore} bestScore={bestScore} />
-      {currentScore !== 12 ? (
+      {currentScore === 12 ? (
         <div className="winner-modal">
           <h1>Congratulations! You caught 'em all!</h1>
-          <h3>Click a pokemon to play again</h3>
+          <button onClick={playAgain}>Click to play again</button>
         </div>
       ) : null}
       <Grid pokemon={pokemon} handleClick={handleClick} />
