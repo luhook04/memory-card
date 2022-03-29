@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Grid from "./components/CardGrid/Grid";
 import Scoreboard from "./components/Scoreboard";
-import Winner from "./components/Winner";
 import "./App.css";
 
 const App = () => {
@@ -85,8 +84,13 @@ const App = () => {
 
   return (
     <div className="main-wrapper">
-      <Winner currentScore={currentScore} />
       <Scoreboard currentScore={currentScore} bestScore={bestScore} />
+      {currentScore !== 12 ? (
+        <div className="winner-modal">
+          <h1>Congratulations! You caught 'em all!</h1>
+          <h3>Click a pokemon to play again</h3>
+        </div>
+      ) : null}
       <Grid pokemon={pokemon} handleClick={handleClick} />
     </div>
   );
