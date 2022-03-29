@@ -97,7 +97,7 @@ const App = () => {
       {currentScore === 12 ? (
         <div className="winner-modal">
           <h1>Congratulations! You caught 'em all!</h1>
-          <button onClick={playAgain}>Click to play again</button>
+          <button onClick={playAgain}>Play Again</button>
         </div>
       ) : null}
       <Grid pokemon={pokemon} handleClick={handleClick} />
