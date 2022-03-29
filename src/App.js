@@ -12,36 +12,36 @@ const App = () => {
   const maxPokemon = 12;
 
   useEffect(() => {
+    const fetchPokemon = async (amount) => {
+      const pokemonArray = [];
+      const randNumArray = [];
+
+      for (let i = 1; i < 500; i++) {
+        randNumArray.push(i);
+      }
+
+      shuffleArray(randNumArray);
+
+      for (let i = 1; i <= amount; i++) {
+        const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${randNumArray[
+          i
+        ]}`;
+        const response = await fetch(pokeUrl);
+        const pokemon = await response.json();
+        const id = pokemon.id;
+        const name = pokemon.name.toUpperCase();
+        const image = pokemon.sprites.front_default;
+        pokemonArray.push({ id, name, image });
+      }
+      return pokemonArray;
+    };
+
     const loadPokemon = async () => {
       setPokemon(shuffleArray(await fetchPokemon(maxPokemon)));
     };
 
     loadPokemon();
   }, []);
-
-  const fetchPokemon = async (amount) => {
-    const pokemonArray = [];
-    const randNumArray = [];
-
-    for (let i = 1; i < 500; i++) {
-      randNumArray.push(i);
-    }
-
-    shuffleArray(randNumArray);
-
-    for (let i = 1; i <= amount; i++) {
-      const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${randNumArray[
-        i
-      ]}`;
-      const response = await fetch(pokeUrl);
-      const pokemon = await response.json();
-      const id = pokemon.id;
-      const name = pokemon.name.toUpperCase();
-      const image = pokemon.sprites.front_default;
-      pokemonArray.push({ id, name, image });
-    }
-    return pokemonArray;
-  };
 
   const playRound = (pokemonName) => {
     if (clickedPokemon.includes(pokemonName)) {
@@ -53,6 +53,7 @@ const App = () => {
       if (newScore > bestScore) setBestScore(newScore);
       setCurrentScore(newScore);
       setClickedPokemon((prevState) => [ ...prevState, pokemonName ]);
+      console.log(clickedPokemon);
     }
   };
 
@@ -77,6 +78,8 @@ const App = () => {
     const pokemonName = e.target.parentNode.lastChild.textContent;
     playRound(pokemonName);
     setPokemon(shuffleArray(pokemon));
+    console.dir(e.target.parentNode);
+    console.log(pokemonName);
   };
 
   return (
