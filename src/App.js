@@ -23,7 +23,7 @@ const App = () => {
     const pokemonArray = [];
     const randNumArray = [];
 
-    for (let i = 1; i < 200; i++) {
+    for (let i = 1; i < 900; i++) {
       randNumArray.push(i);
     }
 
@@ -36,7 +36,7 @@ const App = () => {
       const response = await fetch(pokeUrl);
       const pokemon = await response.json();
       const id = pokemon.id;
-      const name = pokemon.name;
+      const name = pokemon.name.toUpperCase();
       const image = pokemon.sprites.front_default;
       pokemonArray.push({ id, name, image });
     }
