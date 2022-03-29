@@ -23,7 +23,7 @@ const App = () => {
     const pokemonArray = [];
     const randNumArray = [];
 
-    for (let i = 1; i < 900; i++) {
+    for (let i = 1; i < 500; i++) {
       randNumArray.push(i);
     }
 
@@ -51,12 +51,15 @@ const App = () => {
     else {
       const newScore = currentScore + 1;
       if (newScore > bestScore) setBestScore(newScore);
+      if (newScore === 12) {
+        alert("You Win!");
+        setCurrentScore(0);
+        setClickedPokemon([]);
+      }
       setCurrentScore(newScore);
       setClickedPokemon((prevState) => [ ...prevState, pokemonName ]);
     }
   };
-
-  const getNewPokemon = () => {};
 
   const shuffleArray = (array) => {
     let currentIndex = array.length,
@@ -82,7 +85,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="main-wrapper">
       <Scoreboard currentScore={currentScore} bestScore={bestScore} />
       <Grid pokemon={pokemon} handleClick={handleClick} />
     </div>

@@ -6,7 +6,7 @@ const Grid = ({ pokemon, handleClick }) => {
     <Card key={poke.id} pokemon={poke} handleClick={handleClick} />
   ));
 
-  return <div>{pokemonCards}</div>;
+  return <div className="grid">{pokemonCards}</div>;
 };
 
 export default Grid;
