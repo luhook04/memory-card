@@ -51,11 +51,6 @@ const App = () => {
     else {
       const newScore = currentScore + 1;
       if (newScore > bestScore) setBestScore(newScore);
-      if (newScore === 12) {
-        alert("You Win!");
-        setCurrentScore(0);
-        setClickedPokemon([]);
-      }
       setCurrentScore(newScore);
       setClickedPokemon((prevState) => [ ...prevState, pokemonName ]);
     }
