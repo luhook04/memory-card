@@ -8,3 +8,5 @@ const Scoreboard = ({ currentScore, bestScore }) => {
     </div>
   );
 };
+
+export default Scoreboard;

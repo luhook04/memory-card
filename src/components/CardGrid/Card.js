@@ -8,3 +8,5 @@ const Card = ({ pokemon, handleClick }) => {
     </div>
   );
 };
+
+export default Card;
