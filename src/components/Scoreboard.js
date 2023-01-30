@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const Scoreboard = ({ currentScore, bestScore }) => {
   return (
     <div>
-      <h1>Pokemon Memory Game</h1>
+      <h1>Pokémon Memory Game</h1>
       <div className="scoreboard">
         <p>Current Score: {currentScore}</p>
         <p>Best Score: {bestScore}</p>
